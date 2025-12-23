@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Black-Vulkanic-Hole/Black-Vulkanic-Hole.vcxproj" />
+</Solution>
