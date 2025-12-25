@@ -4,16 +4,19 @@ C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(1
       C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Dependencies\glfw-3.4.bin.WIN64\include\GLFW\glfw3.h(123,11):
       see previous definition of 'APIENTRY'
   
+  Util.cpp
   pipeline.cpp
 C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Black-Vulkanic-Hole\source\GraphicThings\pipeline.cpp(19,22): warning C4834: discarding return value of function with [[nodiscard]] attribute
 C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Black-Vulkanic-Hole\source\GraphicThings\pipeline.cpp(16,42): warning C4101: 'e': unreferenced local variable
-  Util.cpp
   main.cpp
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
   (compiling source file 'source/main.cpp')
       C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Dependencies\glfw-3.4.bin.WIN64\include\GLFW\glfw3.h(123,11):
       see previous definition of 'APIENTRY'
   
-  Generating Code...
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
-  Black-Vulkanic-Hole.vcxproj -> C:\Users\roanb\source\repos\Black-Vulkanic-Hole\x64\Debug\Black-Vulkanic-Hole.exe
+  Generating code
+  0 of 586 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Black-Vulkanic-Hole.vcxproj -> C:\Users\roanb\source\repos\Black-Vulkanic-Hole\x64\Release\Black-Vulkanic-Hole.exe

@@ -3,19 +3,27 @@
 
 namespace engine
 {
-	std::vector<char> Pipeline::ReadFile(const std::string& path)
+	std::vector<char> Pipeline::ReadFile(const File file)
 	{
-		fs::path path_(fs::current_path());
-		
-		path_ = path_.parent_path();
-		path_ = path_ / "Black-Vulkanic-Hole/source" / path;
-
 		std::ifstream File{};
+
+		fs::path path_;
+
+		try
+		{
+			path_ = FindFile(file).value();
+		}
+		catch (const std::bad_optional_access& e)
+		{
+			//P.S. fuck you standards commitee for taking your sweet time to add reflection, but especially fuck you MSVC for taking all this time to NOT EVEN finish c++23
+			std::runtime_error("Failed to find file: " + static_cast<int>(file));
+		}
+
 		File.open(path_, std::ios::ate | std::ios::binary);
 	   
 		if (!File.is_open())
 		{
-			throw std::runtime_error("Failed to open file: " + path);
+			throw std::runtime_error("Failed to open file: " + path_.string());
 		}
 
 		size_t FileSize = static_cast<size_t>(File.tellg());
@@ -29,16 +37,18 @@ namespace engine
 
 		return Buffer;
 	}
-	void Pipeline::CreateGraphicsPipeline(const std::string& VertFilePath, const std::string& FragFilePath)
+
+	void Pipeline::CreateGraphicsPipeline()
 	{
-		auto VertShader = ReadFile(VertFilePath);
-		auto FragShader = ReadFile(FragFilePath);
+		auto VertShader = ReadFile(File::VERT_SHADER);
+		auto FragShader = ReadFile(File::FRAG_SHADER);
 
 		std::cout << "Vert Shader size: " << VertShader.size() << '\n';
 		std::cout << "Frag Shader size: " << FragShader.size() << '\n';
 	}
-	Pipeline::Pipeline(const std::string& VertFilePath, const std::string& FragFilePath)
+
+	Pipeline::Pipeline()
 	{
-		CreateGraphicsPipeline(VertFilePath, FragFilePath);
+		CreateGraphicsPipeline();
 	}
 }

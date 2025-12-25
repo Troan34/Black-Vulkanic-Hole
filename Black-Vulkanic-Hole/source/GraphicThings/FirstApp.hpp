@@ -9,11 +9,18 @@ namespace engine
 	{
 	private:
 		Window window{ Height, Width, "Black Hole" };
-		Pipeline pipeline{"GraphicThings/Shader/Shader.vert.spv", "GraphicThings/Shader/Shader.frag.spv"};
+		Pipeline pipeline{};
+		VkInstance Instance;
+
+		void InitVulkan();
+		void MainLoop();
+		void CreateInstance();
 
 	public:
 		static constexpr int Width = 800;
 		static constexpr int Height = 600;
+		
+		~FirstApp();
 
 		void run();
 	};
