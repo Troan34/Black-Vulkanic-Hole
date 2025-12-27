@@ -30,6 +30,7 @@ namespace engine
 		
 		bool inline ShouldClose() { return glfwWindowShouldClose(Window_); }
 
+		void CreateWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 
 	};
 }

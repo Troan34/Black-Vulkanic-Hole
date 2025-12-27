@@ -2,6 +2,7 @@
 
 #include "window.hpp"
 #include "pipeline.hpp"
+#include "device.hpp"
 
 namespace engine
 {
@@ -9,12 +10,12 @@ namespace engine
 	{
 	private:
 		Window window{ Height, Width, "Black Hole" };
-		Pipeline pipeline{};
-		VkInstance Instance;
+		Device device{ window };
+		Pipeline pipeline{ device, Pipeline::DefaultPipelineConfigInfo(Width, Height) };
 
 		void InitVulkan();
 		void MainLoop();
-		void CreateInstance();
+
 
 	public:
 		static constexpr int Width = 800;

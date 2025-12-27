@@ -5,22 +5,17 @@
 #include <iostream>
 #include <filesystem>
 #include <optional>
+#include <sstream>
 
 namespace fs = std::filesystem;
 
-#ifdef _DEBUG
-
+//error checking in debug mode
+#ifndef NDEBUG
 #define VkCall(x) \
 		VkResult err = x;\
 		VkGetError(#x, __FILE__, __LINE__, err);
-
-static constexpr bool enableValidationLayers = true;
-
 #else
-
-static constexpr bool enableValidationLayers = false;
 #define VkCall(x) x;
-
 #endif
 
 enum class File
@@ -29,12 +24,15 @@ enum class File
 	VERT_SHADER,
 };
 
-const std::vector<const char*> validationLayers = {
-	"VK_LAYER_KHRONOS_validation"
-};
 
-void VkGetError(const char* function, const char* file, const int line, const VkResult err);
+void inline VkGetError(const char* function, const char* file, const int line, const VkResult err)
+{
+	if (err != VkResult::VK_SUCCESS)
+	{
+		std::ostringstream ss;
+		ss << "Vulkan error: " << err << " in file: " << file << " at line " << line;
+		throw std::runtime_error(ss.str());
+	}
+}
 
 std::optional<fs::path> FindFile(File file);
-
-bool checkValidationLayerSupport();

@@ -14,6 +14,14 @@ namespace engine
 		glfwTerminate();
 	}
 
+	void Window::CreateWindowSurface(VkInstance instance, VkSurfaceKHR* surface)
+	{
+		if (glfwCreateWindowSurface(instance, Window_, nullptr, surface))
+		{
+			throw std::runtime_error("Failed to create window surface");
+		}
+	}
+
 	void Window::InitWindow()
 	{
 		glfwInit();

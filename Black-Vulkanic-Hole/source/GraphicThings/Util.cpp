@@ -1,23 +1,5 @@
 #include "Util.hpp"
 
-#ifdef _DEBUG
-
-#define VkCall(x) \
-		VkResult err = x;\
-		VkGetError(#x, __FILE__, __LINE__, err);
-#else
-
-#define VkCall(x) x;
-
-#endif
-
-void VkGetError(const char* function, const char* file, const int line, const VkResult err)
-{
-	if (err != VkResult::VK_SUCCESS)
-	{
-		std::cerr << "Vulkan error: " << err << " in file: " << file << " at line " << line;
-	}
-}
 
 std::optional<fs::path> FindFile(File file)
 {
@@ -49,31 +31,4 @@ std::optional<fs::path> FindFile(File file)
 		return path_;
 	else
 		return std::nullopt;
-}
-
-bool checkValidationLayerSupport()
-{
-	uint32_t layerCount;
-	vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
-
-	std::vector<VkLayerProperties> availableLayers(layerCount);
-	vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
-
-	for (auto layerName : validationLayers)
-	{
-		bool layerFound = false;
-
-		for (const auto& layerProperties : availableLayers)
-		{
-			if (strcmp(layerName, layerProperties.layerName) == 0)
-			{
-				layerFound = true;
-				break;
-			}
-		}
-
-		if (!layerFound) return false;
-	}
-
-	return true;
 }
