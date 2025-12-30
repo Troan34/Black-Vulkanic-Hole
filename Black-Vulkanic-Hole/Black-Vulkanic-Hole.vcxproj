@@ -21,14 +21,18 @@
   <ItemGroup>
     <ClInclude Include="source\GraphicThings\FirstApp.hpp" />
     <ClInclude Include="source\GraphicThings\device.hpp" />
+    <ClInclude Include="source\GraphicThings\model.hpp" />
     <ClInclude Include="source\GraphicThings\pipeline.hpp" />
+    <ClInclude Include="source\GraphicThings\swap_chain.hpp" />
     <ClInclude Include="source\GraphicThings\Util.hpp" />
     <ClInclude Include="source\GraphicThings\window.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\GraphicThings\FirstApp.cpp" />
     <ClCompile Include="source\GraphicThings\device.cpp" />
+    <ClCompile Include="source\GraphicThings\model.cpp" />
     <ClCompile Include="source\GraphicThings\pipeline.cpp" />
+    <ClCompile Include="source\GraphicThings\swap_chain.cpp" />
     <ClCompile Include="source\GraphicThings\Util.cpp" />
     <ClCompile Include="source\GraphicThings\window.cpp" />
     <ClCompile Include="source\main.cpp" />

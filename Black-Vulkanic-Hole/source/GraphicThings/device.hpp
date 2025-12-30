@@ -34,7 +34,6 @@ class Device {
   Device(Window &window);
   ~Device();
 
-  // Not copyable or movable
   Device(const Device &) = delete;
   void operator=(const Device &) = delete;
   Device(Device &&) = delete;
@@ -53,6 +52,11 @@ class Device {
       const std::vector<VkFormat> &candidates, VkImageTiling tiling, VkFormatFeatureFlags features);
 
   // Buffer Helper Functions
+
+  /// <summary>
+  /// Creates the buffer based on the size, usage and properties
+  /// </summary>
+  /// <param name="buffer">The return will be given through this reference</param>
   void createBuffer(
       VkDeviceSize size,
       VkBufferUsageFlags usage,

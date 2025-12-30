@@ -13,7 +13,7 @@ namespace engine
 		{
 			path_ = FindFile(file).value();
 		}
-		catch (const std::bad_optional_access& e)
+		catch (const std::bad_optional_access&)
 		{
 			//P.S. fuck you standards commitee for taking your sweet time to add reflection, but especially fuck you MSVC for taking all this time to NOT EVEN finish c++23
 			std::runtime_error("Failed to find file: " + static_cast<int>(file));
@@ -45,7 +45,7 @@ namespace engine
 
 		CreateShaderModule(VertShader, &vertShaderModule);
 		CreateShaderModule(FragShader, &fragShaderModule);
-		
+
 		VkPipelineShaderStageCreateInfo shaderStages[2];
 		shaderStages[0].sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 		shaderStages[0].stage = VK_SHADER_STAGE_VERTEX_BIT;
@@ -63,13 +63,16 @@ namespace engine
 		shaderStages[1].pNext = nullptr;
 		shaderStages[1].pSpecializationInfo = nullptr;
 
+
+		auto bindingDescriptions = Model::Vertex::getBindingDescriptions();
+		auto attributeDescriptions = Model::Vertex::getAttributeDescriptions();
 		VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
 		vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-		vertexInputInfo.vertexAttributeDescriptionCount = 0;
-		vertexInputInfo.vertexBindingDescriptionCount = 0;
-		vertexInputInfo.pVertexAttributeDescriptions = nullptr;
-		vertexInputInfo.pVertexBindingDescriptions = nullptr;
-
+		vertexInputInfo.vertexAttributeDescriptionCount = static_cast<uint32_t>(attributeDescriptions.size());
+		vertexInputInfo.vertexBindingDescriptionCount = static_cast<uint32_t>(bindingDescriptions.size());
+		vertexInputInfo.pVertexAttributeDescriptions = attributeDescriptions.data();
+		vertexInputInfo.pVertexBindingDescriptions = bindingDescriptions.data();
+		
 		VkGraphicsPipelineCreateInfo pipelineInfo{};
 		pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
 		pipelineInfo.stageCount = 2;
@@ -91,7 +94,6 @@ namespace engine
 		pipelineInfo.basePipelineIndex = -1;
 		pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-
 		VkCall(vkCreateGraphicsPipelines(device.device(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline));
 
 	}
@@ -111,6 +113,7 @@ namespace engine
 	{
 		CreateGraphicsPipeline(configInfo);
 	}
+
 	Pipeline::~Pipeline()
 	{
 		vkDestroyShaderModule(device.device(), vertShaderModule, nullptr);
@@ -118,10 +121,15 @@ namespace engine
 		vkDestroyPipeline(device.device(), graphicsPipeline, nullptr);
 
 	}
-	PipelineConfigInfo Pipeline::DefaultPipelineConfigInfo(uint32_t width, uint32_t height)
-	{
-		PipelineConfigInfo configInfo{};
 
+	void Pipeline::Bind(VkCommandBuffer commandBuffer) const
+	{
+		//								vv This says that the pipeline is for graphics. (can be compute, raytracing...)
+		vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, graphicsPipeline);
+	}
+
+	void Pipeline::DefaultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height)
+	{
 		configInfo.inputAssemblyInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
 		//this line says that the data going into vulkan represents triangles, as in
 		//(pA, pB, pC), (pD, pE, pF) 
@@ -208,6 +216,5 @@ namespace engine
 		configInfo.depthStencilInfo.depthBoundsTestEnable = VK_FALSE;
 		configInfo.depthStencilInfo.stencilTestEnable = VK_FALSE;
 
-		return PipelineConfigInfo();
 	}
 }

@@ -1,0 +1,23 @@
+﻿  FirstApp.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'source/GraphicThings/FirstApp.cpp')
+      C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Dependencies\glfw-3.4.bin.WIN64\include\GLFW\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  device.cpp
+  pipeline.cpp
+C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Black-Vulkanic-Hole\source\GraphicThings\pipeline.cpp(19,22): warning C4834: discarding return value of function with [[nodiscard]] attribute
+  swap_chain.cpp
+  Util.cpp
+  window.cpp
+  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.26100.0\shared\minwindef.h(130,9): warning C4005: 'APIENTRY': macro redefinition
+  (compiling source file 'source/main.cpp')
+      C:\Users\roanb\source\repos\Black-Vulkanic-Hole\Dependencies\glfw-3.4.bin.WIN64\include\GLFW\glfw3.h(123,11):
+      see previous definition of 'APIENTRY'
+  
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 1809 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Black-Vulkanic-Hole.vcxproj -> C:\Users\roanb\source\repos\Black-Vulkanic-Hole\x64\Release\Black-Vulkanic-Hole.exe

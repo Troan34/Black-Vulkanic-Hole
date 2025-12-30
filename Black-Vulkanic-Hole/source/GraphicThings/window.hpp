@@ -28,7 +28,8 @@ namespace engine
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 		
-		bool inline ShouldClose() { return glfwWindowShouldClose(Window_); }
+		[[nodiscard]] bool inline ShouldClose() { return glfwWindowShouldClose(Window_); }
+		VkExtent2D inline GetExtent() { return { static_cast<uint32_t>(Width), static_cast<uint32_t>(Height) }; }
 
 		void CreateWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 

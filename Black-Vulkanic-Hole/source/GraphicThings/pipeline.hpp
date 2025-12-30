@@ -10,6 +10,7 @@
 
 #include "Util.hpp"
 #include "device.hpp"
+#include "model.hpp"
 
 namespace fs = std::filesystem;
 
@@ -17,6 +18,10 @@ namespace engine
 {
 	struct PipelineConfigInfo
 	{
+		PipelineConfigInfo() = default;
+		PipelineConfigInfo(const PipelineConfigInfo&) = delete;
+		PipelineConfigInfo& operator=(const PipelineConfigInfo&) = delete;
+
 		VkViewport viewport;
 		VkRect2D scissor;
 		VkPipelineViewportStateCreateInfo viewportInfo;
@@ -50,6 +55,8 @@ namespace engine
 		Pipeline(const Pipeline&) = delete;
 		void operator=(const Pipeline&) = delete;
 
-		static PipelineConfigInfo DefaultPipelineConfigInfo(uint32_t width, uint32_t height);
+		void Bind(VkCommandBuffer commandBuffer) const;
+
+		static void DefaultPipelineConfigInfo(PipelineConfigInfo& configInfo, uint32_t width, uint32_t height);
 	};
 }

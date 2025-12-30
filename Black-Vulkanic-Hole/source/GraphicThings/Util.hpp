@@ -6,17 +6,19 @@
 #include <filesystem>
 #include <optional>
 #include <sstream>
+#include <memory>
+#include <cassert>
 
 namespace fs = std::filesystem;
 
 //error checking in debug mode
 #ifndef NDEBUG
 #define VkCall(x) \
-		VkResult err = x;\
-		VkGetError(#x, __FILE__, __LINE__, err);
+		VkGetError(#x, __FILE__, __LINE__, x);
 #else
 #define VkCall(x) x;
 #endif
+
 
 enum class File
 {
