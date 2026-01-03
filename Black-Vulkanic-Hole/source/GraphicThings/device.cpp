@@ -479,7 +479,7 @@ void Device::copyBuffer(VkBuffer srcBuffer, VkBuffer dstBuffer, VkDeviceSize siz
 }
 
 void Device::copyBufferToImage(
-    VkBuffer buffer, VkImage image, uint32_t width, uint32_t height, uint32_t layerCount) {
+    VkBuffer buffer, VkImage image, uint32_t width_m, uint32_t height_m, uint32_t layerCount) {
   VkCommandBuffer commandBuffer = beginSingleTimeCommands();
 
   VkBufferImageCopy region{};
@@ -493,7 +493,7 @@ void Device::copyBufferToImage(
   region.imageSubresource.layerCount = layerCount;
 
   region.imageOffset = {0, 0, 0};
-  region.imageExtent = {width, height, 1};
+  region.imageExtent = {width_m, height_m, 1};
 
   vkCmdCopyBufferToImage(
       commandBuffer,

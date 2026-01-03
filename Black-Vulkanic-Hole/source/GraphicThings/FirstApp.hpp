@@ -12,26 +12,27 @@ namespace engine
 	class FirstApp
 	{
 	private:
-		Window window{ Height, Width, "Black Hole" };
+		Window window{ height_m, width_m, "Black Hole" };
 		Device device{ window };
-		SwapChain swapChain{ device, window.GetExtent() };
+		std::unique_ptr<SwapChain> swapChain;
 		std::unique_ptr<Pipeline> pipeline;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
 		std::unique_ptr<Model> model;
 		
-
-		void InitVulkan();
 		void CreatePipelineLayout();
 		void CreatePipeline();
 		void CreateCommandBuffers();
+		void FreeCommandBuffers();
 		void DrawFrame();
 		void LoadModels();
+		void RecreateSwapChain();
+		void RecordCommandBuffer(int imageIndex);
 		
 		
 	public:
-		static constexpr int Width = 800;
-		static constexpr int Height = 600;
+		static constexpr int width_m = 800;
+		static constexpr int height_m = 600;
 		
 		FirstApp();
 		~FirstApp();
