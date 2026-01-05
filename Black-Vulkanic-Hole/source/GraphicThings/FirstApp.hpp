@@ -6,15 +6,19 @@
 #include "pipeline.hpp"
 #include "device.hpp"
 #include "swap_chain.hpp"
+#include "game_object.hpp"
+
 
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
+#include <glm/gtc/constants.hpp>
 
 namespace engine
 {
 	struct SimplePushConstantData
 	{
+		glm::mat2 transform{ 1.f };
 		glm::vec2 offset;
 		alignas(16) glm::vec3 color;
 	};
@@ -28,16 +32,17 @@ namespace engine
 		std::unique_ptr<Pipeline> pipeline;
 		VkPipelineLayout pipelineLayout;
 		std::vector<VkCommandBuffer> commandBuffers;
-		std::unique_ptr<Model> model;
+		std::vector<GameObject> gameObjects;
 		
 		void CreatePipelineLayout();
 		void CreatePipeline();
 		void CreateCommandBuffers();
 		void FreeCommandBuffers();
 		void DrawFrame();
-		void LoadModels();
+		void LoadGameObjects();
 		void RecreateSwapChain();
 		void RecordCommandBuffer(int imageIndex);
+		void RenderGameObjects(VkCommandBuffer commandBuffer);
 		
 		
 	public:

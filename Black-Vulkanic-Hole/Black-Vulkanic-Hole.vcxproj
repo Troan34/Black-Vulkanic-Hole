@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="source\GraphicThings\FirstApp.hpp" />
     <ClInclude Include="source\GraphicThings\device.hpp" />
+    <ClInclude Include="source\GraphicThings\game_object.hpp" />
     <ClInclude Include="source\GraphicThings\model.hpp" />
     <ClInclude Include="source\GraphicThings\pipeline.hpp" />
     <ClInclude Include="source\GraphicThings\swap_chain.hpp" />

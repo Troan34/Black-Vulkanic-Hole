@@ -11,6 +11,7 @@ layout(location = 1) in vec3 color;
 
 layout(push_constant) uniform Push
 {
+	mat2 transform;
 	vec2 offset;
 	vec3 color;
 } push;
@@ -19,5 +20,5 @@ layout(push_constant) uniform Push
 void main()
 {
 //gl_Position is a global variable that we use to "return" the position
-	gl_Position = vec4(position + push.offset, 0.0, 1.0);//3rd is the z value, 4th is a normalizations value
+	gl_Position = vec4(push.transform * position + push.offset, 0.0, 1.0);//3rd is the z value, 4th is a normalizations value
 }
