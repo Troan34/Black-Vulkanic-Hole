@@ -19,6 +19,7 @@ namespace fs = std::filesystem;
 #define VkCall(x) x;
 #endif
 
+#define NO_DIS [[nodiscard]]
 
 enum class File
 {
