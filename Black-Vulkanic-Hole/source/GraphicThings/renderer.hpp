@@ -61,5 +61,7 @@ namespace engine
 			assert(isFrameStarted and "Cannot get frame index when frame is not in progress");
 			return currentFrameIndex;
 		}
+
+		float inline GetAspectRatio() const { return swapChain->extentAspectRatio(); }
 	};
 }

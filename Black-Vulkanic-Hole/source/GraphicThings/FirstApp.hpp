@@ -7,6 +7,7 @@
 #include "renderer.hpp"
 #include "game_object.hpp"
 #include "render_system.hpp"
+#include "camera.hpp"
 
 
 #define GLM_FORCE_RADIANS

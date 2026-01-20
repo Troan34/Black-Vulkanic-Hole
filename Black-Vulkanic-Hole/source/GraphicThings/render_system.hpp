@@ -5,19 +5,20 @@
 #include "pipeline.hpp"
 #include "device.hpp"
 #include "game_object.hpp"
+#include "camera.hpp"
 
 
 #define GLM_FORCE_RADIANS
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
+#include <vector>
 
 namespace engine
 {
 	struct SimplePushConstantData
 	{
-		glm::mat2 transform{ 1.f };
-		glm::vec2 offset;
+		glm::mat4 transform{ 1.f };
 		alignas(16) glm::vec3 color;
 	};
 
@@ -39,6 +40,6 @@ namespace engine
 		RenderSystem(const RenderSystem&) = delete;
 		RenderSystem& operator=(const RenderSystem&) = delete;
 
-		void RenderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject> &gameObjects);
+		void RenderGameObjects(VkCommandBuffer commandBuffer, std::vector<GameObject> &gameObjects, const Camera& camera);
 	};
 }

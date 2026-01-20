@@ -20,6 +20,7 @@ namespace fs = std::filesystem;
 #endif
 
 #define NO_DIS [[nodiscard]]
+#define IN_NO_DIS [[nodiscard]] inline
 
 enum class File
 {

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\GraphicThings\camera.hpp" />
     <ClInclude Include="source\GraphicThings\FirstApp.hpp" />
     <ClInclude Include="source\GraphicThings\device.hpp" />
     <ClInclude Include="source\GraphicThings\game_object.hpp" />
@@ -31,6 +32,7 @@
     <ClInclude Include="source\GraphicThings\window.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\GraphicThings\camera.cpp" />
     <ClCompile Include="source\GraphicThings\FirstApp.cpp" />
     <ClCompile Include="source\GraphicThings\device.cpp" />
     <ClCompile Include="source\GraphicThings\model.cpp" />
