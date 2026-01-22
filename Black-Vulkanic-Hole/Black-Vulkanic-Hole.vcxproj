@@ -28,6 +28,7 @@
     <ClInclude Include="source\GraphicThings\renderer.hpp" />
     <ClInclude Include="source\GraphicThings\render_system.hpp" />
     <ClInclude Include="source\GraphicThings\swap_chain.hpp" />
+    <ClInclude Include="source\GraphicThings\user_input.hpp" />
     <ClInclude Include="source\GraphicThings\Util.hpp" />
     <ClInclude Include="source\GraphicThings\window.hpp" />
   </ItemGroup>
@@ -40,6 +41,7 @@
     <ClCompile Include="source\GraphicThings\renderer.cpp" />
     <ClCompile Include="source\GraphicThings\render_system.cpp" />
     <ClCompile Include="source\GraphicThings\swap_chain.cpp" />
+    <ClCompile Include="source\GraphicThings\user_input.cpp" />
     <ClCompile Include="source\GraphicThings\Util.cpp" />
     <ClCompile Include="source\GraphicThings\window.cpp" />
     <ClCompile Include="source\main.cpp" />

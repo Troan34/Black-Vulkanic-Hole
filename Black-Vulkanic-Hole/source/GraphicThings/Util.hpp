@@ -22,6 +22,8 @@ namespace fs = std::filesystem;
 #define NO_DIS [[nodiscard]]
 #define IN_NO_DIS [[nodiscard]] inline
 
+static constexpr float MAX_FRAME_TIME = 10.f;
+
 enum class File
 {
 	FRAG_SHADER,

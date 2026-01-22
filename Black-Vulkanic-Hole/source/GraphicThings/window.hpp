@@ -37,6 +37,7 @@ namespace engine
 		void inline ResetWindowResizedFlag() { frameBufferResized = false; }
 
 		[[nodiscard]] VkExtent2D inline GetExtent() const { return { static_cast<uint32_t>(width_m), static_cast<uint32_t>(height_m) }; }
+		[[nodiscard]] auto GetGLFWWindow() const { return window_m; }
 
 		void CreateWindowSurface(VkInstance instance, VkSurfaceKHR* surface);
 

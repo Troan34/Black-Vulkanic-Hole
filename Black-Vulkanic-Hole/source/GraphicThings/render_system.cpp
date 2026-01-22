@@ -50,8 +50,6 @@ namespace engine
 
 		for (auto& obj : gameObjects)
 		{
-			obj.transform.rotation.y = glm::mod(obj.transform.rotation.y + .01f, glm::two_pi<float>());
-			obj.transform.rotation.x = glm::mod(obj.transform.rotation.x + .005f, glm::two_pi<float>());
 
 			SimplePushConstantData push{};
 
