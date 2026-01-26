@@ -141,7 +141,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.4.bin.WIN64\include;$(SolutionDir)Dependencies\glm-1.0.2\glm;$(SolutionDir)Dependencies\VulkanSDK\1.4.335.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.4.bin.WIN64\include;$(SolutionDir)Dependencies\glm-1.0.2\glm;$(SolutionDir)Dependencies\VulkanSDK\1.4.335.0\Include;$(SolutionDir)Dependencies\tiny_obj_loader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
     </ClCompile>
     <Link>
@@ -160,7 +160,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.4.bin.WIN64\include;$(SolutionDir)Dependencies\glm-1.0.2\glm;$(SolutionDir)Dependencies\VulkanSDK\1.4.335.0\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\glfw-3.4.bin.WIN64\include;$(SolutionDir)Dependencies\glm-1.0.2\glm;$(SolutionDir)Dependencies\VulkanSDK\1.4.335.0\Include;$(SolutionDir)Dependencies\tiny_obj_loader;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
     </ClCompile>

@@ -7,6 +7,7 @@
 //depth value will be (we clamped it) between 0 and 1
 #define GLM_FORCE_DEPTH_ZERO_TO_ONE
 #include <glm/glm.hpp>
+#include <memory>
 
 namespace engine
 {
@@ -20,16 +21,24 @@ namespace engine
 		{
 			glm::vec3 position{};
 			glm::vec3 color{};
+			glm::vec3 normal{};
+			glm::vec2 uv{};
 
 			static std::vector<VkVertexInputBindingDescription> getBindingDescriptions();
 			static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
+
+			bool inline operator==(const Vertex& other) const
+			{
+				return position == other.position and color == other.color and normal == other.normal and uv == other.uv;
+			}
 		};
 
 		struct Builder
 		{
 			std::vector<Vertex> vertices{};
 			std::vector<uint32_t> indeces{};
-
+			
+			void LoadModel(const std::string& filePath);
 		};
 
 	private:
@@ -52,6 +61,8 @@ namespace engine
 		Model(const Model&) = delete;
 		Model& operator=(const Model&) = delete;
 
+		static std::unique_ptr<Model> CreateModelFromFile(Device& device, const std::string& filePath);
+
 		void inline Bind(VkCommandBuffer commandBuffer)
 		{
 			VkBuffer buffers[] = { vertexBuffer };
@@ -70,5 +81,6 @@ namespace engine
 			else
 				vkCmdDraw(commandBuffer, vertexCount, 1, 0, 0);
 		}
+
 	};
 }

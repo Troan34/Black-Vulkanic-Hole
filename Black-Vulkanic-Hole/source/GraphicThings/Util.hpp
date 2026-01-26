@@ -8,6 +8,7 @@
 #include <sstream>
 #include <memory>
 #include <cassert>
+#include <functional>
 
 namespace fs = std::filesystem;
 
@@ -42,3 +43,14 @@ void inline VkGetError(const char* function, const char* file, const int line, c
 }
 
 std::optional<fs::path> FindFile(File file);
+
+
+namespace engine
+{
+	template <typename Typ, typename... Rest>
+	void HashCombine(std::size_t& seed, const Typ& v, const Rest&... rest)
+	{
+		seed ^= std::hash<Typ>{}(v)+0x9e3779b9 + (seed << 6) + (seed >> 2);
+		(HashCombine(seed, rest), ...);
+	};
+}
